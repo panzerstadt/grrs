@@ -10,10 +10,21 @@ struct Cli {
 }
 
 fn main() {
-    println!("Hello, world!");
+    println!("Hello, grrrrrrs!");
 
     let args = Cli::parse();
 
-    println!("argssssss {}", args.pattern);
-    println!("path {}", args.path.display());
+    println!("pattern {}", args.pattern);
+    println!("path {}\n", args.path.display());
+
+    let content = std::fs::read_to_string(&args.path).expect("could not read file");
+
+    println!("results:");
+    println!("---------------------");
+
+    for line in content.lines() {
+        if line.contains(&args.pattern) {
+            println!("{}", line);
+        }
+    }
 }
