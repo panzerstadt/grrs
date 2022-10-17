@@ -17,7 +17,15 @@ fn main() {
     println!("pattern {}", args.pattern);
     println!("path {}\n", args.path.display());
 
-    let content = std::fs::read_to_string(&args.path).expect("could not read file");
+    let result = std::fs::read_to_string(&args.path);
+    let content = match result {
+        Ok(content) => content,
+        // there is a shortcut for this pattern of "if error, panic with error message", its called unwrap!
+        Err(error) => {
+            panic!("can't deal with {}.. just exiting here for now", error);
+        }
+    };
+    println!("file content: {}", content);
 
     println!("results:");
     println!("---------------------");
