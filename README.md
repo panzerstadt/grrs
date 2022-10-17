@@ -1,3 +1,6 @@
+tutorial from
+https://rust-cli.github.io/book/tutorial/index.html
+
 to run
 
 `cargo build`
